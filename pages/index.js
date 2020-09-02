@@ -6,19 +6,16 @@ import Carousel from '../components/carousel'
 import MovieList from '../components/movieList'
 import Footer from '../components/footer'
 
+import { getMovies} from '../actions'
+
 const Home = () => {
-  const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState([])
 
-  const increment = () => {
-    const newCount = count + 1
-    setCount(newCount)
-  }
-
-  const decrement = () => {
-    const newCount = count - 1
-    setCount(newCount)
-  }
-
+  // improve this because now it's called everytime!
+  getMovies().then((movies) => {
+    setMovies(movies)
+  })
+  
   return(
     <div>
       <Head>
@@ -31,20 +28,16 @@ const Home = () => {
       <NavBar />
       <div className="home-page">
         <div className="container">
-          <button onClick={increment} className="btn btn-primary">Increment Number</button>
-          <button onClick={decrement} className="btn btn-primary">Decrement Number</button>
           <div className="row">
             <div className="col-lg-3">
               <SideMenu
                 appName={"Movie DB"}
-                clickHandler={()=>{ console.log("Hello World")}}
-                count={count}
               />
             </div>
             <div className="col-lg-9">
               <Carousel />
               <div className="row">
-                <MovieList count={count} />
+                <MovieList movies={movies}/>
               </div>
             </div>
           </div>
