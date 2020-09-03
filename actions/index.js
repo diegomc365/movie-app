@@ -32,7 +32,8 @@ const MOVIE_DATA = [
 
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(MOVIE_DATA)
+            // resolve(MOVIE_DATA)
+            reject('Cannot fech data!')
         }, 2000)
     })
   }
