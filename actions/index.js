@@ -37,3 +37,14 @@ const MOVIE_DATA = [
         }, 50)
     })
   }
+
+  export const getMovieById = (id) => {
+
+    return new Promise ((resolve,reject) => {
+      const movieIndex = MOVIE_DATA.findIndex((m) => m.id === id)
+      const movie = MOVIE_DATA[movieIndex]
+
+      setTimeout(() => {resolve(movie)}, 50)
+    })
+
+  }
